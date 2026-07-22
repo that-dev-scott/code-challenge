@@ -1,0 +1,354 @@
+:root {
+  --color-bg: #f7f7f8;
+  --color-surface: #ffffff;
+  --color-border: #e2e2e6;
+  --color-text: #1c1c1f;
+  --color-text-muted: #6b6b74;
+  --color-accent: #e8590c;
+  --color-accent-hover: #c94a0a;
+  --color-success: #1a7f4e;
+  --color-success-bg: #e7f6ee;
+  --color-error: #c0362c;
+  --color-error-bg: #fbeae8;
+  --radius: 8px;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 8px rgba(0, 0, 0, 0.04);
+
+  font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+  color: var(--color-text);
+  background: var(--color-bg);
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #17171a;
+    --color-surface: #1f2024;
+    --color-border: #2e2f34;
+    --color-text: #e7e7ea;
+    --color-text-muted: #9a9aa2;
+    --color-accent: #ff922b;
+    --color-accent-hover: #ffa94d;
+    --color-success: #4ade9b;
+    --color-success-bg: #123626;
+    --color-error: #ff8a80;
+    --color-error-bg: #3a1f1c;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+#root {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+}
+
+h1 {
+  font-size: 22px;
+  margin: 0 0 20px;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+textarea {
+  font: inherit;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.app-header-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+.community-picker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.community-select {
+  font: inherit;
+  padding: 6px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-width: 0;
+  flex: 1;
+  max-width: 260px;
+}
+
+.app-header-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/*
+  A few reusable building blocks you can apply as className values.
+  Delete/adjust anything that doesn't fit the layout you build.
+*/
+
+.layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 640px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.list-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px 14px;
+  border: none;
+  background: none;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.list-item:hover {
+  background: var(--color-bg);
+}
+
+.list-item.active {
+  background: var(--color-accent);
+  color: white;
+}
+
+.btn-primary {
+  background: var(--color-accent);
+  color: white;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 6px 18px;
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-hover);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 6px 18px;
+}
+
+.btn-secondary:hover {
+  background: var(--color-bg);
+}
+
+.btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.status-message {
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  margin-top: 8px;
+  display: inline-block;
+}
+
+.status-message.success {
+  color: var(--color-success);
+  background: var(--color-success-bg);
+}
+
+.success-banner {
+  max-height: 60px;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  border: 1px solid var(--color-success);
+  border-radius: var(--radius);
+  background: var(--color-success-bg);
+  color: var(--color-success);
+  opacity: 1;
+  overflow: hidden;
+  transition:
+    max-height 3s ease,
+    opacity 3s ease,
+    padding 3s ease,
+    margin-bottom 3s ease;
+}
+
+.success-banner-hidden {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  opacity: 0;
+}
+
+.error-banner {
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  border: 1px solid var(--color-error);
+  border-radius: var(--radius);
+  background: var(--color-error-bg);
+  color: var(--color-error);
+}
+
+.status-message.error {
+  color: var(--color-error);
+  background: var(--color-error-bg);
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+.note-card {
+  position: relative;
+  padding: 16px 44px 16px 16px;
+}
+
+.note-card + .note-card {
+  margin-top: 12px;
+}
+
+.note-card-text {
+  margin: 0 0 8px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.note-card-attribution {
+  margin: 0;
+  font-size: 13px;
+}
+
+.note-card-edit {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+}
+
+.note-card-edit:hover {
+  color: var(--color-text);
+  border-color: var(--color-accent);
+}
+
+.note-card-textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  color: var(--color-text);
+  resize: vertical;
+}
+
+.note-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 6px;
+  font-size: 13px;
+}
+
+.note-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.note-card-actions .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.text-error {
+  color: var(--color-error);
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  color: var(--color-text-muted);
+}
+
+.loading-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

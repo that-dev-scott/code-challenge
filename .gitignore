@@ -141,3 +141,13 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Python
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# SQLite database files (generated at runtime, not part of the repo)
+*.db
+*.sqlite3
